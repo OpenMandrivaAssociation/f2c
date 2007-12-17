@@ -9,7 +9,7 @@ Release: %{release}
 License: Distributable
 Group: Development/Other
 Source: f2c-20001107.tar.bz2
-Patch0: f2c-19991109.patch.bz2
+Patch0: f2c-19991109.patch
 URL: ftp://ftp.netlib.org/f2c/
 
 %description
