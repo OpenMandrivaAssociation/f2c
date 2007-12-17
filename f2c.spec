@@ -44,7 +44,7 @@ mkdir -p $RPM_BUILD_ROOT/%{_bindir} $RPM_BUILD_ROOT/%{_mandir}/man1 $RPM_BUILD_R
 install -m 644 libf2c/libf2c.a $RPM_BUILD_ROOT/%{_libdir}
 install -m 644 f2c.h $RPM_BUILD_ROOT/%{_includedir}
 install -s -m 755 src/f2c $RPM_BUILD_ROOT/%{_bindir}
-install -s -m 755 fc $RPM_BUILD_ROOT/%{_bindir}
+install -m 755 fc $RPM_BUILD_ROOT/%{_bindir}
 install -m 644 src/f2c.1t $RPM_BUILD_ROOT/%{_mandir}/man1/f2c.1
 install -m 755 libf2c/libf2c.so.0.22 $RPM_BUILD_ROOT/%{_libdir}
 ln -sf %{_libdir}/libf2c.so.0.22 $RPM_BUILD_ROOT/%{_libdir}libf2c.so
