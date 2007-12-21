@@ -11,6 +11,7 @@ Group: Development/Other
 Source: f2c-20001107.tar.bz2
 Patch0: f2c-19991109.patch
 URL: ftp://ftp.netlib.org/f2c/
+Buildroot: %{_tmppath}/%{name}-buildroot
 
 %description
 F2c converts Fortran 77 source code to C or C++ source files. If no
