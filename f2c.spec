@@ -76,9 +76,8 @@ mkdir -p libf2c/PIC
 
 cp libf2c/makefile.u libf2c/Makefile
 cp src/makefile.u src/Makefile
-export CFLAGS="%{optflags} -fPIC"
-make -C src
-make -C libf2c
+RPM_OPT_FLAGS="%{optflags} -fPIC" make -C src
+RPM_OPT_FLAGS="%{optflags} -fPIC" make -C libf2c
 
 %install
 rm -rf %{buildroot}
