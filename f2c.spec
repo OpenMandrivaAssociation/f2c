@@ -90,9 +90,13 @@ install -m 644 src/f2c.1t %{buildroot}%{_mandir}/man1/f2c.1
 install -m 755 libf2c/libf2c.so.0.22 %{buildroot}%{_libdir}
 ln -sf %{_libdir}/libf2c.so.0.22 %{buildroot}%{_libdir}/libf2c.so
  
+%if %mdkversion < 200900
 %post -p /sbin/ldconfig
+%endif
 
+%if %mdkversion < 200900
 %postun -p /sbin/ldconfig
+%endif
 
 %files
 %defattr(-,root,root)
