@@ -5,7 +5,7 @@
 Summary:	Fortran to C/C++ converter
 Name:		f2c
 Version:	20080407
-Release:	%{mkrel 2}
+Release:	%{mkrel 3}
 License:	MIT
 Group:		Development/Other
 # Create directory named %{name}-%{version}. Download all files from
