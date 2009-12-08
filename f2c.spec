@@ -5,7 +5,7 @@
 Summary:	Fortran to C/C++ converter
 Name:		f2c
 Version:	20080407
-Release:	%{mkrel 3}
+Release:	%{mkrel 4}
 License:	MIT
 Group:		Development/Other
 # Create directory named %{name}-%{version}. Download all files from
@@ -15,6 +15,7 @@ Group:		Development/Other
 Source0:	f2c-%{version}.tar.lzma
 Source1:	ftp://ftp.netlib.org/f2c/libf2c.zip
 Patch0:		f2c-20080407.patch
+Patch1:		f2c-20080407-mdv-fix-str-fmt.patch
 URL:		ftp://ftp.netlib.org/f2c/
 Buildroot:	%{_tmppath}/%{name}-buildroot
 # You need the library and devel package to actually build any code
@@ -66,6 +67,7 @@ unzip %{SOURCE1}
 popd
 make -C src -f makefile.u xsum.out
 %patch0 -p1  -b .tim
+%patch1 -p1 -b .strfmt
 
 %build
 %ifarch axp
