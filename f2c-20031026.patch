@@ -1,6 +1,19 @@
-diff -p -up f2c-20080407/f2c.h.tim f2c-20080407/f2c.h
---- f2c-20080407/f2c.h.tim	1999-09-07 19:46:24.000000000 +0200
-+++ f2c-20080407/f2c.h	2009-12-08 21:12:09.000000000 +0100
+--- ./src/f2c.1t.20031026	2002-06-21 20:40:35.000000000 +0200
++++ ./src/f2c.1t	2004-02-04 10:51:05.000000000 +0100
+@@ -354,10 +354,7 @@
+ header file
+ .TP
+ .F /usr/lib/libF77.a
+-intrinsic function library
+-.TP
+-.F /usr/lib/libI77.a
+-Fortran I/O library
++f2c function library
+ .TP
+ .F /lib/libc.a
+ C library, see section 3
+--- ./src/f2c.h.20031026	1999-09-07 19:46:24.000000000 +0200
++++ ./src/f2c.h	2004-02-04 10:51:05.000000000 +0100
 @@ -7,6 +7,25 @@
  #ifndef F2C_INCLUDE
  #define F2C_INCLUDE
@@ -27,7 +40,7 @@ diff -p -up f2c-20080407/f2c.h.tim f2c-20080407/f2c.h
  typedef long int integer;
  typedef unsigned long int uinteger;
  typedef char *address;
-@@ -26,6 +45,8 @@ typedef unsigned long long ulongint;	/* 
+@@ -26,6 +45,8 @@
  #define qbit_set(a,b)	((a) |  ((ulongint)1 << (b)))
  #endif
  
@@ -36,7 +49,7 @@ diff -p -up f2c-20080407/f2c.h.tim f2c-20080407/f2c.h
  #define TRUE_ (1)
  #define FALSE_ (0)
  
-@@ -42,9 +63,21 @@ typedef short flag;
+@@ -42,11 +63,22 @@
  typedef short ftnlen;
  typedef short ftnint;
  #else
@@ -52,15 +65,28 @@ diff -p -up f2c-20080407/f2c.h.tim f2c-20080407/f2c.h
  typedef long int flag;
  typedef long int ftnlen;
  typedef long int ftnint;
-+
-+#endif /* __alpha__ */
-+
  #endif
  
++#endif /* __alpha__ */
++
  /*external read, write*/
-diff -p -up f2c-20080407/libf2c/f2c.h0.tim f2c-20080407/libf2c/f2c.h0
---- f2c-20080407/libf2c/f2c.h0.tim	1999-09-07 19:46:24.000000000 +0200
-+++ f2c-20080407/libf2c/f2c.h0	2009-12-08 21:10:13.000000000 +0100
+ typedef struct
+ {	flag cierr;
+--- ./src/makefile.u.20031026	2003-10-27 05:36:02.000000000 +0100
++++ ./src/makefile.u	2004-02-04 10:52:02.000000000 +0100
+@@ -1,8 +1,8 @@
+ #	Makefile for f2c, a Fortran 77 to C converter
+ 
+ .SUFFIXES: .c .o
+-CC = cc
+-CFLAGS = -O
++CC = gcc
++CFLAGS = $(RPM_OPT_FLAGS)
+ SHELL = /bin/sh
+ YACC = yacc
+ YFLAGS =
+--- ./libf2c/f2c.h0.20031026	1999-09-07 13:46:24.000000000 +0200
++++ ./libf2c/f2c.h0	2004-02-04 10:51:05.000000000 +0100
 @@ -7,6 +7,26 @@
  #ifndef F2C_INCLUDE
  #define F2C_INCLUDE
@@ -88,7 +114,7 @@ diff -p -up f2c-20080407/libf2c/f2c.h0.tim f2c-20080407/libf2c/f2c.h0
  typedef long int integer;
  typedef unsigned long int uinteger;
  typedef char *address;
-@@ -26,6 +46,8 @@ typedef unsigned long long ulongint;	/* 
+@@ -26,6 +46,8 @@
  #define qbit_set(a,b)	((a) |  ((ulongint)1 << (b)))
  #endif
  
@@ -97,7 +123,7 @@ diff -p -up f2c-20080407/libf2c/f2c.h0.tim f2c-20080407/libf2c/f2c.h0
  #define TRUE_ (1)
  #define FALSE_ (0)
  
-@@ -42,9 +64,21 @@ typedef short flag;
+@@ -42,9 +64,21 @@
  typedef short ftnlen;
  typedef short ftnint;
  #else
@@ -119,9 +145,8 @@ diff -p -up f2c-20080407/libf2c/f2c.h0.tim f2c-20080407/libf2c/f2c.h0
  #endif
  
  /*external read, write*/
-diff -p -up f2c-20080407/libf2c/makefile.u.tim f2c-20080407/libf2c/makefile.u
---- f2c-20080407/libf2c/makefile.u.tim	2008-04-06 04:25:08.000000000 +0200
-+++ f2c-20080407/libf2c/makefile.u	2009-12-08 20:59:26.000000000 +0100
+--- ./libf2c/makefile.u.20031026	2003-06-06 15:09:42.000000000 +0200
++++ ./libf2c/makefile.u	2004-02-04 10:51:05.000000000 +0100
 @@ -13,15 +13,17 @@
  # to the CFLAGS = line below.
  
@@ -130,7 +155,7 @@ diff -p -up f2c-20080407/libf2c/makefile.u.tim f2c-20080407/libf2c/makefile.u
 +CC = gcc
  SHELL = /bin/sh
 -CFLAGS = -O
-+CFLAGS = $(RPM_OPT_FLAGS)
++CFLAGS = $(RPM_OPT_FLAGS) -DNON_UNIX_STDIO
 +SHARED = libf2c.so.0.22
  
  # compile, then strip unnecessary symbols
@@ -144,7 +169,7 @@ diff -p -up f2c-20080407/libf2c/makefile.u.tim f2c-20080407/libf2c/makefile.u
  ## Under Solaris (and other systems that do not understand ld -x),
  ## omit -x in the ld line above.
  ## If your system does not have the ld command, comment out
-@@ -69,11 +71,21 @@ TIME =	dtime_.o etime_.o
+@@ -69,11 +71,12 @@
  OFILES = $(MISC) $(POW) $(CX) $(DCX) $(REAL) $(DBL) $(INT) \
  	$(HALF) $(CMP) $(EFL) $(CHAR) $(I77) $(TIME)
  
@@ -154,22 +179,26 @@ diff -p -up f2c-20080407/libf2c/makefile.u.tim f2c-20080407/libf2c/makefile.u
  libf2c.a: $(OFILES)
 -	ar r libf2c.a $?
 -	-ranlib libf2c.a
-+	ar r $@ $? 
++	ar r $@ $?
 +	-ranlib $@
-+
-+
-+SHAREDOBJ = $(patsubst %.o,%.o,$(MISC) $(POW) $(CX) $(DCX) \
-+	$(REAL) $(DBL) $(INT) $(HALF) $(CMP) $(EFL) $(CHAR) $(I77) $(TIME))
-+
-+$(SHARED): $(SHAREDOBJ)
-+	$(CC) -shared -Wl,-soname,libf2c.so.0 -o $@ *.o -lm -lc
-+
-+
 +
  
  ## Shared-library variant: the following rule works on Linux
  ## systems.  Details are system-dependent.  Under Linux, -fPIC
-@@ -122,7 +134,7 @@ install: libf2c.a
+@@ -81,9 +84,9 @@
+ ## Under Solaris, use -Kpic in CFLAGS and use "ld -G" instead
+ ## of "cc -shared".
+ 
+-libf2c.so: $(OFILES)
+-	cc -shared -o libf2c.so $(OFILES)
+-
++$(SHARED): $(OFILES)
++	$(CC) -shared -Wl,-soname,libf2c.so.0 -o $@ $(OFILES) -lm -lc
++ 
+ ### If your system lacks ranlib, you don't need it; see README.
+ 
+ f77vers.o: f77vers.c
+@@ -122,7 +125,7 @@
  	-ranlib $(LIBDIR)/libf2c.a
  
  clean:
@@ -178,27 +207,9 @@ diff -p -up f2c-20080407/libf2c/makefile.u.tim f2c-20080407/libf2c/makefile.u
  
  backspac.o:	fio.h
  close.o:	fio.h
-diff -p -up f2c-20080407/src/f2c.1t.tim f2c-20080407/src/f2c.1t
---- f2c-20080407/src/f2c.1t.tim	2002-06-21 20:40:35.000000000 +0200
-+++ f2c-20080407/src/f2c.1t	2009-12-08 20:59:26.000000000 +0100
-@@ -353,11 +353,8 @@ output file
- .F /usr/include/f2c.h
- header file
- .TP
--.F /usr/lib/libF77.a
--intrinsic function library
--.TP
--.F /usr/lib/libI77.a
--Fortran I/O library
-+.F /usr/lib/libf2c.a
-+f2c function library
- .TP
- .F /lib/libc.a
- C library, see section 3
-diff -p -up f2c-20080407/src/f2c.h.tim f2c-20080407/src/f2c.h
---- f2c-20080407/src/f2c.h.tim	1999-09-07 19:46:24.000000000 +0200
-+++ f2c-20080407/src/f2c.h	2009-12-08 21:08:11.000000000 +0100
-@@ -7,6 +7,28 @@
+--- ./f2c.h.20031026	1999-09-07 19:46:24.000000000 +0200
++++ ./f2c.h	2004-02-04 10:51:05.000000000 +0100
+@@ -7,6 +7,25 @@
  #ifndef F2C_INCLUDE
  #define F2C_INCLUDE
  
@@ -221,26 +232,20 @@ diff -p -up f2c-20080407/src/f2c.h.tim f2c-20080407/src/f2c.h
 +
 +#else
 +
-+
-+
-+
  typedef long int integer;
  typedef unsigned long int uinteger;
  typedef char *address;
-@@ -26,6 +48,8 @@ typedef unsigned long long ulongint;	/* 
+@@ -26,6 +45,7 @@
  #define qbit_set(a,b)	((a) |  ((ulongint)1 << (b)))
  #endif
  
 +#endif /* __alpha__ */
-+
  #define TRUE_ (1)
  #define FALSE_ (0)
  
-@@ -41,10 +65,23 @@ typedef unsigned long long ulongint;	/* 
- typedef short flag;
+@@ -42,11 +62,22 @@
  typedef short ftnlen;
  typedef short ftnint;
-+
  #else
 +
 +#ifdef __alpha__
@@ -254,23 +259,10 @@ diff -p -up f2c-20080407/src/f2c.h.tim f2c-20080407/src/f2c.h
  typedef long int flag;
  typedef long int ftnlen;
  typedef long int ftnint;
-+
-+#endif /* __alpha__ */
-+
  #endif
  
++#endif /* __alpha__ */
++
  /*external read, write*/
-diff -p -up f2c-20080407/src/makefile.u.tim f2c-20080407/src/makefile.u
---- f2c-20080407/src/makefile.u.tim	2005-03-05 02:24:21.000000000 +0100
-+++ f2c-20080407/src/makefile.u	2009-12-08 20:59:26.000000000 +0100
-@@ -1,8 +1,8 @@
- #	Makefile for f2c, a Fortran 77 to C converter
- 
- .SUFFIXES: .c .o
--CC = cc
--CFLAGS = -O
-+CC = gcc
-+CFLAGS = $(RPM_OPT_FLAGS)
- SHELL = /bin/sh
- YACC = yacc
- YFLAGS =
+ typedef struct
+ {	flag cierr;
