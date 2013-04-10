@@ -1,4 +1,4 @@
-Summary: The f2c Fortran to C/C++ conversion program and static libraries.
+Summary: The f2c Fortran to C/C++ conversion program and static libraries
 Name: f2c
 Version: 20031026
 Release: 3.0.1%{?dist}
