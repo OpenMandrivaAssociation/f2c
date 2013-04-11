@@ -1,13 +1,12 @@
 Summary: The f2c Fortran to C/C++ conversion program and static libraries
 Name: f2c
 Version: 20031026
-Release: 3.0.1%{?dist}
+Release: 4
 License: Distributable
-Group: Development/Languages
+Group: Development/Other
 Source: f2c.tar
 Patch0: f2c-20031026.patch 
 URL: http://netlib.org/f2c/
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: unzip
 Obsoletes: f2c-libs
 
