@@ -1,0 +1,11 @@
+diff -up f2c/libf2c/makefile.u.parallel-make f2c/libf2c/makefile.u
+--- f2c/libf2c/makefile.u.parallel-make	2013-02-09 17:07:21.582050669 +0100
++++ f2c/libf2c/makefile.u	2013-02-09 17:15:33.602794850 +0100
+@@ -77,6 +77,7 @@ libf2c.a: $(OFILES)
+ 	ar r $@ $?
+ 	-ranlib $@
+ 
++$(OFILES): f2c.h signal1.h sysdep1.h
+ 
+ ## Shared-library variant: the following rule works on Linux
+ ## systems.  Details are system-dependent.  Under Linux, -fPIC
