@@ -4,7 +4,7 @@
  CC = cc
  SHELL = /bin/sh
  CFLAGS = -O
-+SHARED = libf2c.so.0.22
++SHARED = libf2c.so.@SOVER@
  
  # compile, then strip unnecessary symbols
  .c.o:
