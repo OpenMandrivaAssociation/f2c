@@ -4,7 +4,7 @@
 
 Name:           f2c
 Summary:        A Fortran 77 to C/C++ conversion program
-Version:	20230428
+Version:	20240130
 Release:	1
 License:        MIT
 Group:          Development/C
