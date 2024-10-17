@@ -8,7 +8,7 @@ Version:	20240130
 Release:	1
 License:        MIT
 Group:          Development/C
-URL:            http://www.netlib.org/f2c/
+URL:            https://www.netlib.org/f2c/
 Source0:        http://www.netlib.org/f2c/src.tgz
 Source1:        http://www.netlib.org/f2c/libf2c.zip
 Source2:        http://www.netlib.org/f2c/f2c.pdf
