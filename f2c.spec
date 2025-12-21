@@ -19,6 +19,7 @@ Patch0:		f2c-20240504.patch
 #Patch0:		f2c-20090411.patch
 #Patch1:		f2c-arithchk.patch
 #Patch2:		f2c-parallel-make.patch
+BuildRequires:	make
 BuildRequires:  unzip
 BuildRequires:  byacc
 Requires:       %{libf2cname} = %{version}-%{release}
