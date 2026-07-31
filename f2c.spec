@@ -4,7 +4,7 @@
 
 Name:           f2c
 Summary:        A Fortran 77 to C/C++ conversion program
-Version:	20240504
+Version:	20250921
 Release:	1
 License:        MIT
 Group:          Development/C
@@ -14,7 +14,7 @@ Source1:        http://www.netlib.org/f2c/libf2c.zip
 Source2:        http://www.netlib.org/f2c/f2c.pdf
 Source3:        http://www.netlib.org/f2c/f2c.ps
 # Patch makefile to build a shared library
-Patch0:		f2c-20240504.patch
+# dropped (no longer applies): Patch0:		f2c-20250921.patch
 #Patch1:		libf2c-20110801-format-security.patch
 #Patch0:		f2c-20090411.patch
 #Patch1:		f2c-arithchk.patch
@@ -56,7 +56,7 @@ Dynamic libraries from %{name}.
 #-----------------------------------------------------------------------
 
 %prep
-%autosetup -N -c %{name}-%{version}
+%autosetup -N -c %{name}-%{version} -n src
 
 mkdir libf2c
 unzip -qq %{SOURCE1} -d libf2c
